@@ -80,7 +80,7 @@ export default {
 <style lang="scss" scoped>
     .bg-main-color {
         background-color: #1E2D3B;
-        height: 100%;
+        height: 800px;
         align-items: center;
         justify-content: center;
     }
