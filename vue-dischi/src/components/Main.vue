@@ -1,8 +1,10 @@
 
 <template>
   <div class="container bg-main-color">
+      <Search @doSearch="filteredAlbumComponent($event)" />
       <div class="row justify-content-center pt-3">
-        <select name="cars" id="cars" class="w-25" @change="filteredAlbum($event)" v-model="key">
+        <span class="text-white text-center">No component (Main)</span>
+        <select class="w-25" @change="filteredAlbum($event)" v-model="key">
           <option value ="Tutti"> Tutti</option>
           <option value ="Rock"> Rock</option>
           <option value ="Pop"> Pop</option>
@@ -22,9 +24,14 @@
 </template>
 
 <script>
-import axios from 'axios';
+import axios from 'axios'
+import Search from './Search.vue'
+
 export default {
   name: 'Main',
+  components: {
+      Search,
+    },
   
   data() {
       return {
@@ -52,11 +59,18 @@ export default {
            return this.cards;
       } else {
         return this.cards = this.filteredcards.filter((element) => element.genre.includes(event.target.value));
+      }    
+    },
+     filteredAlbumComponent(inputSelect){
+        if(inputSelect === "Tutti"){
+          this.cards = this.all;
+          return this.cards;
+        }
+        else {
+          return this.cards = this.filteredcards.filter((element) => element.genre.includes(inputSelect))
+        }
       }
-          
-           
-    }
-    }
+    },
     
     
 }
@@ -66,7 +80,7 @@ export default {
 <style lang="scss" scoped>
     .bg-main-color {
         background-color: #1E2D3B;
-        height: 100vh;
+        height: 100%;
         align-items: center;
         justify-content: center;
     }
