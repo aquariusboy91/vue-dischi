@@ -48,7 +48,7 @@ export default {
     methods: {
         filteredAlbum(event) {
           if (event.target.value === 'Tutti') {
-            this.cards = this.all
+            this.cards = this.all;
            return this.cards;
       } else {
         return this.cards = this.filteredcards.filter((element) => element.genre.includes(event.target.value));
